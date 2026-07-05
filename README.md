@@ -1,2 +1,2 @@
 # verilink-crm-analysis
-CRM data analysis and AI automation for a B2B SaaS company
+CRM Analytics, Customer Success Intelligence and AI Automation for for a B2B SaaS company

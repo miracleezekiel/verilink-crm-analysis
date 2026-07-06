@@ -1,0 +1,1 @@
+This folder contains all SQL query files written for the Verilink Solutions CRM project. Files are saved as .sql format and cover customer segmentation, churn analysis, tenure grouping, and revenue reporting.

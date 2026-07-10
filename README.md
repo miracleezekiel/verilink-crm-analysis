@@ -48,5 +48,62 @@ at-risk customers before they leave.
 | GitHub | Version control and project documentation |
 
 ---
+verilink-crm-analysis
+├── Data
+│   ├── Raw_Data        — Original Kaggle dataset
+│   └── Cleaned_Data    — Processed dataset ready for CRM import
+├── Analysis
+│   └── LibreOffice_Workbook  — Main analysis workbook
+├── SQL
+│   └── Query files for customer segmentation
+├── Screenshots
+│   ├── LibreOffice_Calc
+│   ├── HubSpot
+│   ├── MySQL_Workbench
+│   ├── n8n_Automation
+│   └── GitHub
+└── README.md
+
+---
+
+### Project Status
+
+| Phase | Description | Status |
+|-------|-------------|--------|
+| Phase 1 | Dataset exploration and cleaning in LibreOffice | Complete |
+| Phase 2 | Churn analysis — tenure groups and monthly charges | Complete |
+| Phase 3 | HubSpot CRM setup — properties, pipeline, data import | Complete |
+| Phase 4 | SQL analysis in MySQL Workbench | In progress |
+| Phase 5 | AI automation with n8n and Groq API | Upcoming |
+| Phase 6 | GitHub documentation and LinkedIn publishing | Ongoing |
+
+---
+
+### Key Findings So Far
+
+- Overall churn rate: 26.5% — 1,869 of 7,043 customers churned
+- 55% of all customers are on month-to-month contracts
+- New customers under 12 months tenure show the highest churn rate
+- Month-to-month contract customers churn significantly more than 
+  one-year or two-year contract customers
+
+---
+
+### HubSpot CRM Setup
+
+- 6 custom contact properties created
+- Deal pipeline configured with 7 stages
+- 997 customer records imported from cleaned dataset
+- 3 test contacts manually created for property verification
+
+---
+
+### Note on Dataset Size and HubSpot Free Tier
+
+The full dataset contains 7,043 customer records. HubSpot's free 
+tier supports a maximum of 1,000 contacts. A sample of 997 records 
+was imported to demonstrate the full import process, property 
+mapping, and CRM structure. In a production environment, a paid 
+HubSpot account would be used to import the complete dataset.
 
 ### Repository Structure

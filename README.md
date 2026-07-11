@@ -5,9 +5,9 @@
 
 ### Project Overview
 
-Verilink Solutions is a B2B SaaS company used as the basis 
-for this CRM analytics and automation case study. The project 
-analyzes a customer dataset of 7,043 records to identify churn 
+Verilink Solutions is a B2B SaaS company. This project documents the CRM implementation, 
+customer churn analysis, and AI automation work done for their customer success team. 
+The project analyzes a customer dataset of 7,043 records to identify churn 
 patterns, build a structured CRM environment in HubSpot, and 
 develop AI-powered automation workflows using n8n and Groq API.
 

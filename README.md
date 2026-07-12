@@ -5,105 +5,92 @@
 
 ### Project Overview
 
-Verilink Solutions is a B2B SaaS company. This project documents the CRM implementation, 
-customer churn analysis, and AI automation work done for their customer success team. 
-The project analyzes a customer dataset of 7,043 records to identify churn 
-patterns, build a structured CRM environment in HubSpot, and 
-develop AI-powered automation workflows using n8n and Groq API.
+This project documents the end-to-end CRM implementation, 
+customer churn analysis, and AI automation work completed 
+for Verilink Solutions, a B2B SaaS company operating in 
+the telecommunications sector.
 
-The goal is to demonstrate how a CRM Support Specialist and 
-Operations Analyst can combine data analysis, CRM administration, 
-and AI automation to reduce customer churn and improve retention.
+The project analyzes 7,043 customer records to identify 
+churn patterns, builds a structured CRM environment in 
+HubSpot, writes SQL queries for customer segmentation, 
+and develops automated workflows using n8n and Groq API 
+to support the customer success and support team.
 
 ---
 
 ### Business Problem
 
-Verilink Solutions has a 26.5% customer churn rate. More than one 
-in four customers is cancelling their subscription. The business 
-needs to understand who is churning, why, and how to detect 
-at-risk customers before they leave.
+Verilink Solutions has a 26.5% customer churn rate. 
+More than one in four customers is cancelling their 
+subscription. The business needs to understand who is 
+churning, why it is happening, and how to automatically 
+detect at-risk customers before they leave.
 
 ---
 
 ### Dataset
 
-- Source: Telco Customer Churn dataset — Kaggle
 - Size: 7,043 customers, 21 columns
 - Key fields: Contract type, tenure, monthly charges, 
-  internet service, tech support, churn status
+  internet service, phone service, payment method, 
+  churn status
 
 ---
 
-### Tools Used
+### Tools and Technologies
 
 | Tool | Purpose |
 |------|---------|
 | LibreOffice Calc | Data exploration, cleaning, and analysis |
-| HubSpot CRM | CRM setup, contact management, pipeline configuration |
-| MySQL Workbench | SQL-based customer segmentation and reporting |
+| HubSpot CRM | CRM administration, contact management, pipeline |
+| MySQL Workbench | SQL queries for customer segmentation |
 | n8n | Workflow automation connecting CRM to AI tools |
-| Groq API | AI-powered lead scoring and churn risk detection |
-| Telegram Web | Real-time automated alerts for high-risk customers |
+| Groq API | AI-powered churn risk detection and alerts |
+| Telegram Web | Real-time automated notifications |
 | GitHub | Version control and project documentation |
 
 ---
-verilink-crm-analysis
-├── Data
-│   ├── Raw_Data        — Original Kaggle dataset
-│   └── Cleaned_Data    — Processed dataset ready for CRM import
-├── Analysis
-│   └── LibreOffice_Workbook  — Main analysis workbook
-├── SQL
-│   └── Query files for customer segmentation
-├── Screenshots
-│   ├── LibreOffice_Calc
-│   ├── HubSpot
-│   ├── MySQL_Workbench
-│   ├── n8n_Automation
-│   └── GitHub
-└── README.md
+
+### Repository Structure
+
+| Folder | Contents |
+|--------|---------|
+| Data/Raw_Data | Original customer dataset |
+| Data/Cleaned_Data | Processed datasets ready for analysis and import |
+| Analysis/LibreOffice_Workbook | Main analysis workbook with all tabs |
+| SQL | SQL query files for customer analysis |
+| Screenshots | Documented screenshots organized by tool |
 
 ---
 
-### Project Status
+### Project Progress
 
 | Phase | Description | Status |
 |-------|-------------|--------|
-| Phase 1 | Dataset exploration and cleaning in LibreOffice | Complete |
-| Phase 2 | Churn analysis — tenure groups and monthly charges | Complete |
-| Phase 3 | HubSpot CRM setup — properties, pipeline, data import | Complete |
-| Phase 4 | SQL analysis in MySQL Workbench | In progress |
-| Phase 5 | AI automation with n8n and Groq API | Upcoming |
-| Phase 6 | GitHub documentation and LinkedIn publishing | Ongoing |
+| 1 | Dataset exploration and cleaning | Complete |
+| 2 | Churn analysis — tenure and charges | Complete |
+| 3 | HubSpot CRM setup and data import | Complete |
+| 4 | SQL analysis in MySQL Workbench | In progress |
+| 5 | AI automation with n8n and Groq API | Upcoming |
+| 6 | Final documentation and publishing | Ongoing |
 
 ---
 
-### Key Findings So Far
+### Key Findings
 
-- Overall churn rate: 26.5% — 1,869 of 7,043 customers churned
-- 55% of all customers are on month-to-month contracts
-- New customers under 12 months tenure show the highest churn rate
-- Month-to-month contract customers churn significantly more than 
-  one-year or two-year contract customers
+- Overall churn rate: 26.5%
+- 1,869 out of 7,043 customers churned
+- 55% of all customers on month-to-month contracts
+- New customers under 12 months show highest churn rate
+- Month-to-month customers churn significantly more than 
+  yearly contract customers
 
 ---
 
 ### HubSpot CRM Setup
 
-- 6 custom contact properties created
+- 10 custom contact properties created in Verilink 
+  Customer Data property group
 - Deal pipeline configured with 7 stages
-- 997 customer records imported from cleaned dataset
-- 3 test contacts manually created for property verification
-
----
-
-### Note on Dataset Size and HubSpot Free Tier
-
-The full dataset contains 7,043 customer records. HubSpot's free 
-tier supports a maximum of 1,000 contacts. A sample of 997 records 
-was imported to demonstrate the full import process, property 
-mapping, and CRM structure. In a production environment, a paid 
-HubSpot account would be used to import the complete dataset.
-
-### Repository Structure
+- 997 customer records successfully imported
+- All 13 key data fields mapped to correct properties

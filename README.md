@@ -1,39 +1,48 @@
 # CRM Analytics, Customer Success Intelligence and AI Automation
-## Verilink Solutions — B2B SaaS
+## Verilink Solutions — B2B SaaS Telecommunications
 
 ---
 
 ### Project Overview
 
-This project documents the end-to-end CRM implementation, 
-customer churn analysis, and AI automation work completed 
-for Verilink Solutions, a B2B SaaS company operating in 
-the telecommunications sector.
+This project documents the complete CRM implementation, 
+customer churn analysis, daily customer support operations, 
+and AI automation work completed for Verilink Solutions, 
+a B2B SaaS company in the telecommunications sector.
 
-The project analyzes 7,043 customer records to identify 
-churn patterns, builds a structured CRM environment in 
-HubSpot, writes SQL queries for customer segmentation, 
-and develops automated workflows using n8n and Groq API 
-to support the customer success and support team.
+The engagement covers the full lifecycle of CRM work:
+- Raw data analysis and cleaning
+- HubSpot CRM configuration and administration
+- Daily customer support representative operations
+- SQL-based customer segmentation and reporting
+- AI-powered automation for churn detection
 
 ---
 
 ### Business Problem
 
-Verilink Solutions has a 26.5% customer churn rate. 
-More than one in four customers is cancelling their 
-subscription. The business needs to understand who is 
-churning, why it is happening, and how to automatically 
-detect at-risk customers before they leave.
+Verilink Solutions identified a 26.5% customer churn rate 
+across their subscriber base of 7,043 customers.
+
+The objective was to:
+1. Analyze customer data to identify churn patterns
+2. Configure HubSpot CRM to support the customer 
+   success and support team
+3. Build automated workflows to detect at-risk 
+   customers before they cancel
+4. Give the support team the tools and processes 
+   needed to proactively reduce cancellations
 
 ---
 
-### Dataset
+### Key Findings from Data Analysis
 
-- Size: 7,043 customers, 21 columns
-- Key fields: Contract type, tenure, monthly charges, 
-  internet service, phone service, payment method, 
-  churn status
+| Finding | Detail |
+|---------|--------|
+| Overall churn rate | 26.5% — 1,869 of 7,043 customers |
+| Highest risk contract type | Month-to-month — 55% of all customers |
+| Most vulnerable tenure period | First 12 months of customer relationship |
+| Revenue risk | Higher monthly charge customers churning faster |
 
 ---
 
@@ -42,12 +51,12 @@ detect at-risk customers before they leave.
 | Tool | Purpose |
 |------|---------|
 | LibreOffice Calc | Data exploration, cleaning, and analysis |
-| HubSpot CRM | CRM administration, contact management, pipeline |
+| HubSpot Free CRM | CRM administration and daily support operations |
 | MySQL Workbench | SQL queries for customer segmentation |
-| n8n | Workflow automation connecting CRM to AI tools |
-| Groq API | AI-powered churn risk detection and alerts |
-| Telegram Web | Real-time automated notifications |
-| GitHub | Version control and project documentation |
+| n8n | Workflow automation engine |
+| Groq API | AI-powered churn risk detection |
+| Telegram Web | Real-time automated customer alerts |
+| GitHub | Version control and documentation |
 
 ---
 
@@ -55,42 +64,46 @@ detect at-risk customers before they leave.
 
 | Folder | Contents |
 |--------|---------|
-| Data/Raw_Data | Original customer dataset |
-| Data/Cleaned_Data | Processed datasets ready for analysis and import |
-| Analysis/LibreOffice_Workbook | Main analysis workbook with all tabs |
+| Data/Raw_Data | Original dataset — never modified |
+| Data/Cleaned_Data | Processed datasets for analysis and import |
+| Analysis/LibreOffice_Workbook | Full analysis workbook with all tabs |
+| HubSpot | CRM setup documentation and activity records |
 | SQL | SQL query files for customer analysis |
-| Screenshots | Documented screenshots organized by tool |
+| n8n | Automation workflow files and diagrams |
+| Screenshots | Organized screenshots by tool |
 
 ---
 
-### Project Progress
+### Project Phases
 
 | Phase | Description | Status |
 |-------|-------------|--------|
-| 1 | Dataset exploration and cleaning | Complete |
-| 2 | Churn analysis — tenure and charges | Complete |
-| 3 | HubSpot CRM setup and data import | Complete |
-| 4 | SQL analysis in MySQL Workbench | In progress |
-| 5 | AI automation with n8n and Groq API | Upcoming |
-| 6 | Final documentation and publishing | Ongoing |
+| 1 | Data exploration and cleaning | ✅ Complete |
+| 2 | Churn analysis — tenure and charges | ✅ Complete |
+| 3 | HubSpot CRM setup and configuration | ✅ Complete |
+| 4 | HubSpot customer support operations | ✅ Complete |
+| 5 | SQL analysis in MySQL Workbench | 🔄 In Progress |
+| 6 | AI automation with n8n and Groq API | ⏳ Upcoming |
+| 7 | Final documentation and publishing | 🔄 Ongoing |
 
 ---
 
-### Key Findings
+### Dataset Details
 
-- Overall churn rate: 26.5%
-- 1,869 out of 7,043 customers churned
-- 55% of all customers on month-to-month contracts
-- New customers under 12 months show highest churn rate
-- Month-to-month customers churn significantly more than 
-  yearly contract customers
+| Detail | Value |
+|--------|-------|
+| Total customers analyzed | 7,043 |
+| Total columns | 21 |
+| Records imported to HubSpot | 997 |
+| HubSpot import columns mapped | 13 |
+| Import errors after corrections | 0 |
 
 ---
 
-### HubSpot CRM Setup
+### Note on HubSpot Tier
 
-- 10 custom contact properties created in Verilink 
-  Customer Data property group
-- Deal pipeline configured with 7 stages
-- 997 customer records successfully imported
-- All 13 key data fields mapped to correct properties
+This project was built on HubSpot Free tier.
+Advanced workflow automation, customer portal, and 
+service analytics require HubSpot Service Hub paid plans.
+In a production environment, these would be configured 
+to complete the full customer success workflow.

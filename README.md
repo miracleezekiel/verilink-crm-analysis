@@ -1,109 +1,119 @@
-# CRM Analytics, Customer Success Intelligence and AI Automation
+# CRM Analytics, Customer Success Intelligence 
+# and AI Automation
 ## Verilink Solutions — B2B SaaS Telecommunications
 
 ---
 
-### Project Overview
+## Project Overview
 
-This project documents the complete CRM implementation, 
-customer churn analysis, daily customer support operations, 
-and AI automation work completed for Verilink Solutions, 
+This project documents the complete CRM implementation,
+customer churn analysis, daily customer support operations,
+and AI automation work completed for Verilink Solutions,
 a B2B SaaS company in the telecommunications sector.
-
-The engagement covers the full lifecycle of CRM work:
-- Raw data analysis and cleaning
-- HubSpot CRM configuration and administration
-- Daily customer support representative operations
-- SQL-based customer segmentation and reporting
-- AI-powered automation for churn detection
 
 ---
 
-### Business Problem
+## Business Problem
 
-Verilink Solutions identified a 26.5% customer churn rate 
-across their subscriber base of 7,043 customers.
+Verilink Solutions had a 26.5% customer churn rate
+across a subscriber base of 7,043 customers.
 
 The objective was to:
 1. Analyze customer data to identify churn patterns
-2. Configure HubSpot CRM to support the customer 
-   success and support team
-3. Build automated workflows to detect at-risk 
-   customers before they cancel
-4. Give the support team the tools and processes 
-   needed to proactively reduce cancellations
+2. Configure HubSpot CRM for the customer support team
+3. Build SQL-driven customer segmentation for reporting
+4. Automate churn risk detection using AI workflows
 
 ---
 
-### Key Findings from Data Analysis
+## Key Findings
 
 | Finding | Detail |
 |---------|--------|
-| Overall churn rate | 26.5% — 1,869 of 7,043 customers |
-| Highest risk contract type | Month-to-month — 55% of all customers |
-| Most vulnerable tenure period | First 12 months of customer relationship |
-| Revenue risk | Higher monthly charge customers churning faster |
+| Overall churn rate | 26.5% across 7,043 customers |
+| Highest risk contract | Month-to-month at 42.7% churn |
+| Most vulnerable period | First 12 months — 47.4% churn |
+| Revenue concentration | High-charge customers churn at 37.2% |
 
 ---
 
-### Tools and Technologies
+## Tools and Technologies
 
 | Tool | Purpose |
 |------|---------|
-| LibreOffice Calc | Data exploration, cleaning, and analysis |
-| HubSpot Free CRM | CRM administration and daily support operations |
-| MySQL Workbench | SQL queries for customer segmentation |
-| n8n | Workflow automation engine |
+| LibreOffice Calc | Data cleaning, churn analysis, dashboards |
+| HubSpot Free CRM | CRM administration, customer support ops |
+| MySQL Workbench | SQL queries and customer segmentation |
+| n8n | AI automation workflows |
 | Groq API | AI-powered churn risk detection |
-| Telegram Web | Real-time automated customer alerts |
+| Telegram Web | Real-time automated alerts |
 | GitHub | Version control and documentation |
 
 ---
 
-### Repository Structure
+## Repository Structure
 
 | Folder | Contents |
 |--------|---------|
-| Data/Raw_Data | Original dataset — never modified |
-| Data/Cleaned_Data | Processed datasets for analysis and import |
-| Analysis/LibreOffice_Workbook | Full analysis workbook with all tabs |
-| HubSpot | CRM setup documentation and activity records |
-| SQL | SQL query files for customer analysis |
-| n8n | Automation workflow files and diagrams |
-| Screenshots | Organized screenshots by tool |
+| Data/Raw_Data | Original dataset |
+| Data/Cleaned_Data | Processed files for analysis and import |
+| Analysis/LibreOffice_Workbook | Full analysis workbook |
+| HubSpot | CRM operations documentation |
+| SQL | SQL query files |
+| n8n | Automation workflows (upcoming) |
+| Screenshots | Tool-organized screenshots |
 
 ---
 
-### Project Phases
+## Project Phases
 
 | Phase | Description | Status |
 |-------|-------------|--------|
 | 1 | Data exploration and cleaning | ✅ Complete |
-| 2 | Churn analysis — tenure and charges | ✅ Complete |
-| 3 | HubSpot CRM setup and configuration | ✅ Complete |
+| 2 | Churn analysis in LibreOffice | ✅ Complete |
+| 3 | HubSpot CRM setup and admin | ✅ Complete |
 | 4 | HubSpot customer support operations | ✅ Complete |
-| 5 | SQL analysis in MySQL Workbench | 🔄 In Progress |
+| 5 | SQL analysis in MySQL Workbench | ✅ Complete |
 | 6 | AI automation with n8n and Groq API | ⏳ Upcoming |
 | 7 | Final documentation and publishing | 🔄 Ongoing |
 
 ---
 
-### Dataset Details
+## HubSpot CRM Summary
 
-| Detail | Value |
-|--------|-------|
-| Total customers analyzed | 7,043 |
-| Total columns | 21 |
-| Records imported to HubSpot | 997 |
-| HubSpot import columns mapped | 13 |
-| Import errors after corrections | 0 |
+- 997 customer records imported with 0 errors
+- 10 custom properties in Verilink Customer Data group
+- 15 customer support interactions documented
+- Tickets, deals, templates, snippets all configured
+- Dashboard with 4 reports built on free tier
 
 ---
 
-### Note on HubSpot Tier
+## SQL Analysis Summary
 
-This project was built on HubSpot Free tier.
-Advanced workflow automation, customer portal, and 
-service analytics require HubSpot Service Hub paid plans.
-In a production environment, these would be configured 
+- 6 business queries written and executed
+- Queries cover health check, segmentation, 
+  revenue analysis, and high risk identification
+- SQL results cross-validated against LibreOffice
+- All queries saved in verilink_churn_analysis.sql
+
+---
+
+## Dataset Details
+
+| Detail | Value |
+|--------|-------|
+| Total customers | 7,043 |
+| Columns | 21 |
+| HubSpot import records | 997 |
+| Import errors | 0 |
+
+---
+
+## Note on HubSpot Free Tier
+
+This project uses HubSpot Free. Advanced features
+including workflow automation, customer portal, and
+service analytics require paid Service Hub plans.
+In a production environment these would be configured
 to complete the full customer success workflow.

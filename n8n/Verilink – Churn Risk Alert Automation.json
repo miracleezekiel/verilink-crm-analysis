@@ -1,0 +1,286 @@
+{
+  "name": "Verilink – Churn Risk Alert Automation",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -464,
+        32
+      ],
+      "id": "fde0fa79-bf19-4b79-b0c1-d4ddb4df5b22",
+      "name": "Verilink - Hourly Trigger"
+    },
+    {
+      "parameters": {
+        "url": "https://api.hubapi.com/crm/v3/objects/contacts",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "limit",
+              "value": "100"
+            },
+            {
+              "name": "properties",
+              "value": "customer_id,firstname,lastname,email,contract_type,monthly_charges,churn_status,tenure_month"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -272,
+        96
+      ],
+      "id": "4fec9aca-47ab-4488-8336-52e8065493c0",
+      "name": "Verilink - Retrieve HubSpot Contacts",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "g8BxKN7mREgbHDoB",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "results",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -112,
+        16
+      ],
+      "id": "d86a1913-b6b7-4e5c-a4d9-0ed47311508e",
+      "name": "Verilink - Split Contacts"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.groq.com/openai/v1/chat/completions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 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"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"llama-3.3-70b-versatile\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a Customer Success Analyst at Verilink Solutions. Analyze the customer data and write a professional churn risk alert in under 100 words. Include the customer's full name, customer ID, email, contract type, monthly charges, churn status, explain why the customer is at risk, and recommend one practical retention action.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"Customer ID: {{$json.properties.customer_id}}\\nCustomer Name: {{$json.properties.firstname}} {{$json.properties.lastname}}\\nEmail: {{$json.properties.email}}\\nContract Type: {{$json.properties.contract_type}}\\nMonthly Charges: ${{$json.properties.monthly_charges}}\\nChurn Status: {{$json.properties.churn_status}}\"\n    }\n  ],\n  \"temperature\": 0.3,\n  \"max_tokens\": 150\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        416,
+        32
+      ],
+      "id": "b1560155-06e7-4494-b6d9-79ace6d35b87",
+      "name": "Verilink - Generate AI Churn Summary"
+    },
+    {
+      "parameters": {
+        "chatId": "5225897758",
+        "text": "=🚨 *VERILINK CHURN RISK ALERT*  {{ $json.choices[0].message.content }}  ━━━━━━━━━━━━━━━━━━━━━━  📋 Customer ID: {{ $('Verilink - Filter High-Value Churn Risk').item.json.properties.customer_id }}  👤 Customer: {{ $('Verilink - Filter High-Value Churn Risk').item.json.properties.firstname }} {{ $('Verilink - Filter High-Value Churn Risk').item.json.properties.lastname }}  📧 Email: {{ $('Verilink - Filter High-Value Churn Risk').item.json.properties.email }}  💰 Monthly Charges: ${{ $('Verilink - Filter High-Value Churn Risk').item.json.properties.monthly_charges }}  🏢 Verilink Solutions",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        592,
+        -80
+      ],
+      "id": "4818b2d9-8573-4336-9c3d-2f392af582b2",
+      "name": "Verilink - Send Customer Success Alert",
+      "webhookId": "e3cf6c84-679c-4481-a2e5-da88a1ff4ff9",
+      "credentials": {
+        "telegramApi": {
+          "id": "Erg5gpQkJxhJ9oI4",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "ac0990f5-b039-4d67-951d-bcd79d1905e4",
+              "leftValue": "={{$json.properties.churn_status}}",
+              "rightValue": "Yes",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        64,
+        96
+      ],
+      "id": "e4dbb3b9-b5a7-4db2-9392-c83c51aecd50",
+      "name": "Verilink - Filter Churned Customers"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "e677cb0a-3a6a-486a-b476-b313672b0a70",
+              "leftValue": "={{$json.properties.contract_type}}",
+              "rightValue": "Month-to-month",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "e20ef821-f609-455d-a716-963378d0f768",
+              "leftValue": "={{$json.properties.monthly_charges}}",
+              "rightValue": 65,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        224,
+        -32
+      ],
+      "id": "232efe61-b0a2-4fe2-9208-2ee11e67efde",
+      "name": "Verilink - Filter High-Value Churn Risk"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Verilink - Hourly Trigger": {
+      "main": [
+        [
+          {
+            "node": "Verilink - Retrieve HubSpot Contacts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verilink - Retrieve HubSpot Contacts": {
+      "main": [
+        [
+          {
+            "node": "Verilink - Split Contacts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verilink - Split Contacts": {
+      "main": [
+        [
+          {
+            "node": "Verilink - Filter Churned Customers",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verilink - Generate AI Churn Summary": {
+      "main": [
+        [
+          {
+            "node": "Verilink - Send Customer Success Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verilink - Filter Churned Customers": {
+      "main": [
+        [
+          {
+            "node": "Verilink - Filter High-Value Churn Risk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verilink - Filter High-Value Churn Risk": {
+      "main": [
+        [
+          {
+            "node": "Verilink - Generate AI Churn Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "8c89ec19-d62e-4ae4-a40b-3171c030b29e",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e7f2a12dd2699274babb9ccabdacbc3ab3155ad3036e7d224890153771260de3"
+  },
+  "nodeGroups": [],
+  "id": "ggsLxCHnpaOPCw1i",
+  "tags": []
+}

@@ -248,64 +248,25 @@ This message was sent automatically with n8n.
 
 ---
 
+---
+
 ## Troubleshooting
 
-### HubSpot returns 0 contacts
-
-Check that your Service Key has `crm.objects.contacts.read` scope.
-Verify the URL includes the correct property names as query parameters.
-
-### monthly_charges comparison fails in IF node
-
-Enable **Convert types** in the IF node condition for monthly_charges.
-HubSpot returns all property values as strings. Without conversion,
-the number comparison operator cannot evaluate correctly.
-
-### Groq returns credential error with unchanged ID
-
-Do not use n8n's Authentication dropdown for Groq. 
-Set Authentication to None and pass the Authorization header 
-manually in the Headers section. This stores the value inline 
-in the node JSON and avoids the stale credential reference bug.
-
-### Telegram bot sends no message
-
-Confirm you sent a message to your bot before calling getUpdates.
-The Chat ID only appears in getUpdates after the bot has received 
-at least one message from that chat.
+| Problem | Cause | Solution |
+|---------|-------|---------|
+| HubSpot returns 0 contacts | Missing scope on Service Key | Add crm.objects.contacts.read scope |
+| monthly_charges comparison fails | HubSpot returns numbers as strings | Enable Convert types in IF node |
+| Groq credential error with fixed ID | Corrupted workflow JSON reference | Set Authentication to None, use inline headers |
+| Telegram sends no message | Chat ID not retrieved | Send a message to the bot first, then call getUpdates |
+| Workflow fails silently | No error handling | Error Monitor workflow sends Telegram failure alert |
 
 ---
 
-## Lessons Learned
+## Future Production Enhancements
 
-See [LESSONS_LEARNED.md](../LESSONS_LEARNED.md) for full details.
-
-Key lessons:
-
-1. n8n workflow JSON can retain stale credential references after 
-   credentials are deleted. Rebuilding the workflow solves this 
-   faster than attempting to repair the JSON manually.
-
-2. HubSpot Free does not support the HubSpot Trigger node which 
-   requires OAuth Developer App setup. Schedule Trigger with HTTP 
-   Request is the correct architecture for free accounts.
-
-3. HubSpot returns numeric fields as strings. Always enable type 
-   conversion on numeric comparisons in IF nodes.
-
-4. Passing API keys as inline headers rather than n8n credentials 
-   prevents the stale credential ID bug entirely.
-
----
-
-## Future Improvements
-
-| Improvement | Description | Priority |
-|-------------|-------------|----------|
-| Duplicate alert prevention | Track alerted customer IDs in Google Sheets. Skip if already alerted within 24 hours | High |
-| Error handling | Add error trigger node to catch and log failed executions | High |
-| Google Sheets logging | Log every alert sent with timestamp, customer ID, and AI summary | Medium |
-| Weekly digest | Schedule a Monday morning summary of all flagged customers from the past week | Medium |
-| HubSpot write-back | After flagging a customer, update their Churn Risk property in HubSpot automatically | Medium |
-| Retry logic | Wrap Groq and Telegram nodes with retry on failure | Low |
-| Webhook trigger | Replace Schedule Trigger with real-time HubSpot webhook when upgrading to paid HubSpot | Low |
+| Enhancement | Priority | Implementation |
+|-------------|----------|---------------|
+| Duplicate alert prevention | High | Check Google Sheets log before alerting |
+| HubSpot write-back | Medium | Update contact Churn Risk property after flagging |
+| Weekly digest | Medium | Monday Schedule Trigger summarizing the week |
+| Real-time webhook trigger | Low | Replace Schedule Trigger with HubSpot webhook on paid account |

@@ -25,8 +25,6 @@ high-risk customers hourly and alerts the team via Telegram.
 
 ## 🎥 Solution Demonstration
 
-## 🎥 Solution Demonstration
-
 Watch the complete demonstration of the Verilink Customer Success Intelligence System, showcasing the end-to-end implementation from CRM configuration and SQL analysis to AI-powered workflow automation.
 
 The demonstration covers:

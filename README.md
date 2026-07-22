@@ -25,9 +25,9 @@ high-risk customers hourly and alerts the team via Telegram.
 
 ---
 
-## 🎥 Project Walkthrough
+## 🎥 Solution Demonstration
 
-Watch the complete walkthrough of this project, where I demonstrate the full customer success workflow from CRM configuration through SQL analysis and AI-powered workflow automation.
+Watch the complete walkthrough of this Solution Demonstration, where I demonstrate the full customer success workflow from CRM configuration through SQL analysis and AI-powered workflow automation.
 
 The walkthrough includes:
 
@@ -40,7 +40,7 @@ The walkthrough includes:
 - Google Sheets audit logging
 - Workflow failure monitoring
 
-📹 **Project Walkthrough Video**
+📹 **Solution Demonstration Walkthrough Video**
 
 https://github.com/miracleezekiel/verilink-crm-analysis/releases/tag/v1.0
 

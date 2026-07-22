@@ -23,6 +23,29 @@ high-risk customers hourly and alerts the team via Telegram.
 
 ---
 
+---
+
+## 🎥 Project Walkthrough
+
+Watch the complete walkthrough of this project, where I demonstrate the full customer success workflow from CRM configuration through SQL analysis and AI-powered workflow automation.
+
+The walkthrough includes:
+
+- HubSpot CRM configuration
+- Customer segmentation and contact management
+- SQL churn analysis and reporting
+- n8n workflow automation
+- AI-generated customer retention summaries
+- Telegram customer success alerts
+- Google Sheets audit logging
+- Workflow failure monitoring
+
+📹 **Project Walkthrough Video**
+
+https://github.com/miracleezekiel/verilink-crm-analysis/releases/tag/v1.0
+
+---
+
 ## Key Results
 
 | Metric | Finding |
